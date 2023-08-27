@@ -14,6 +14,12 @@ app.use((req, res, next) => {
   next();
 });
 
+console.log("Server starting with the following environment variables:");
+console.log("API_KEY:", process.env.API_KEY ? "SET" : "NOT SET");
+console.log("UN:", process.env.UN ? "SET" : "NOT SET");
+console.log("PW:", process.env.PW ? "SET" : "NOT SET");
+console.log("NODE_ENV:", process.env.NODE_ENV);
+
 app.use(bodyParser.json());
 app.use(cors({ origin: allowedOrigins }));
 app.use(helmet());
