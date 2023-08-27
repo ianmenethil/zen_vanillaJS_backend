@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transaction Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet" />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gradient-to-br from-blue-400 to-purple-500">
+    <div class="container mx-auto bg-white shadow-lg p-5 rounded-lg">
+      <h1 class="text-center text-3xl font-bold mb-5">Transaction Result</h1>
+      <h2 class="text-center text-2xl mb-5" id="paymentStatusHeader"></h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <div class="border rounded p-2">
+            <p class="border-b font-semibold pb-1">Payment Details</p>
+            <ul class="list-inside list-disc">
+              <li>PaymentStatus: <span id="PaymentStatus"></span></li>
+              <li>PaymentStatusString: <span id="PaymentStatusString"></span></li>
+              <li>IsPaymentSettledToMerchant: <span id="IsPaymentSettledToMerchant"></span></li>
+              <li>FailureCode: <span id="FailureCode"></span></li>
+              <li>FailureReason: <span id="FailureReason"></span></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="border rounded p-2">
+            <p class="border-b font-semibold pb-1">Transaction Details</p>
+            <ul class="list-inside list-disc">
+              <li>PaymentAccount: <span id="PaymentAccount"></span></li>
+              <li>AccountOrCardNo: <span id="AccountOrCardNo"></span></li>
+              <li>PaymentCard: <span id="PaymentCard"></span></li>
+              <li>Token: <span id="Token"></span></li>
+              <li>CardCategory: <span id="CardCategory"></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="border rounded p-2">
+          <p class="border-b font-semibold pb-1">Processor Details</p>
+          <ul class="list-inside list-disc">
+            <li>ProcessorReference: <span id="ProcessorReference"></span></li>
+            <li>TransactionSource: <span id="TransactionSource"></span></li>
+            <li>TransactionSourceString: <span id="TransactionSourceString"></span></li>
+            <li>ProcessingDate: <span id="ProcessingDate"></span></li>
+            <li>SettlementDate: <span id="SettlementDate"></span></li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="border rounded p-2">
+          <p class="border-b font-semibold pb-1">Merchant Details</p>
+          <ul class="list-inside list-disc">
+            <li>MerchantCode: <span id="MerchantCode"></span></li>
+            <li>MerchantUniquePaymentId: <span id="MerchantUniquePaymentId"></span></li>
+            <li>CustomerReference: <span id="CustomerReference"></span></li>
+            <li>CustomerName: <span id="CustomerName"></span></li>
+            <li>AdditionalReference: <span id="AdditionalReference"></span></li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="border rounded p-2">
+          <p class="border-b font-semibold pb-1">Base Amount Details</p>
+          <ul class="list-inside list-disc">
+            <li>BaseAmount: <span id="BaseAmount"></span></li>
+            <li>CustomerFee: <span id="CustomerFee"></span></li>
+            <li>ProcessedAmount: <span id="ProcessedAmount"></span></li>
+            <li>FundsToMerchant: <span id="FundsToMerchant"></span></li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="border rounded p-2">
+          <p class="border-b font-semibold pb-1">Callback Status</p>
+          <ul class="list-inside list-disc">
+            <li>CallbackStatus: <span id="CallbackStatus"></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return "";
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+    var paymentStatus = getParameterByName("PaymentStatus");
+    if (paymentStatus == "3") {
+      document.getElementById("PaymentStatus").innerHTML = '<span class="text-green-500">Successful</span>';
+      document.getElementById("paymentStatusHeader").innerText = "Payment Successful";
+      document.getElementById("paymentStatusHeader").classList.add("text-green-500");
+    } else {
+      document.getElementById("PaymentStatus").innerHTML = '<span class="text-red-500">Failed</span>';
+      document.getElementById("paymentStatusHeader").innerText = "Payment Failed";
+      document.getElementById("paymentStatusHeader").classList.add("text-red-500");
+    }
+    document.getElementById("PaymentStatusString").innerHTML = getParameterByName("PaymentStatusString");
+    document.getElementById("PaymentAccount").innerHTML = getParameterByName("PaymentAccount");
+    document.getElementById("AccountOrCardNo").innerHTML = getParameterByName("AccountOrCardNo");
+    document.getElementById("PaymentCard").innerHTML = getParameterByName("PaymentCard");
+    document.getElementById("Token").innerHTML = getParameterByName("Token");
+    document.getElementById("IsPaymentSettledToMerchant").innerHTML = getParameterByName("IsPaymentSettledToMerchant");
+    document.getElementById("CustomerName").innerHTML = getParameterByName("CustomerName");
+    document.getElementById("CustomerReference").innerHTML = getParameterByName("CustomerReference");
+    document.getElementById("ProcessorReference").innerHTML = getParameterByName("ProcessorReference");
+    document.getElementById("TransactionSource").innerHTML = getParameterByName("TransactionSource");
+    document.getElementById("TransactionSourceString").innerHTML = getParameterByName("TransactionSourceString");
+    document.getElementById("ProcessingDate").innerHTML = getParameterByName("ProcessingDate");
+    document.getElementById("SettlementDate").innerHTML = getParameterByName("SettlementDate");
+    document.getElementById("MerchantCode").innerHTML = getParameterByName("MerchantCode");
+    document.getElementById("BaseAmount").innerHTML = getParameterByName("BaseAmount");
+    document.getElementById("CustomerFee").innerHTML = getParameterByName("CustomerFee");
+    document.getElementById("ProcessedAmount").innerHTML = getParameterByName("ProcessedAmount");
+    document.getElementById("FundsToMerchant").innerHTML = getParameterByName("FundsToMerchant");
+    document.getElementById("AdditionalReference").innerHTML = getParameterByName("AdditionalReference");
+    document.getElementById("MerchantUniquePaymentId").innerHTML = getParameterByName("MerchantUniquePaymentId");
+    document.getElementById("CallbackStatus").innerHTML = getParameterByName("CallbackStatus");
+    document.getElementById("CardCategory").innerHTML = getParameterByName("CardCategory");
+    document.getElementById("FailureCode").innerHTML = getParameterByName("FailureCode");
+    document.getElementById("FailureReason").innerHTML = getParameterByName("FailureReason");
+  </script>
+</html>
