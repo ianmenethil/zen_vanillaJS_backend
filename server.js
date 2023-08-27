@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const CryptoJS = require("crypto-js");
 const cors = require("cors");
-const allowedOrigins = process.env.NODE_ENV === "production" ? ["https://eventsairdemo.ianmenethil.com"] : ["*"];
+const allowedOrigins = process.env.NODE_ENV === "production" ? ["https://eventsairdemo.azurewebsites.net"] : ["*"];
 const app = express();
 const PORT = process.env.PORT || 3000;
 
