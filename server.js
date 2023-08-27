@@ -3,13 +3,13 @@ const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const CryptoJS = require("crypto-js");
 const cors = require("cors");
-const allowedOrigins = process.env.NODE_ENV === "production" ? ["https://eventsairdemo.azurewebsites.net"] : ["*"];
+const allowedOrigins = process.env.NODE_ENV === "production" ? ["https://eventsairdemo.ianmenethil.com"] : ["*"];
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Logging middleware
 app.use((req, res, next) => {
-  console.log("Incoming request:", req.method, req.path);
+  // console.log("Incoming request:", req.method, req.path);
   next();
 });
 
@@ -49,15 +49,15 @@ app.post("/generate-fingerprint", (req, res) => {
   const un = process.env.UN;
   const pw = process.env.PW;
   const { payMode, wholeNumberAmount, mUPID } = req.body;
-  console.log("req.body", req.body);
+  // console.log("req.body", req.body);
   const strFingerprint = CryptoJS.SHA1(apiKey + "|" + un + "|" + pw + "|" + payMode + "|" + wholeNumberAmount + "|" + mUPID).toString();
-  console.log("strFingerprint", strFingerprint);
+  // console.log("strFingerprint", strFingerprint);
   res.json({ fingerprint: strFingerprint });
 });
 
 app.get("/generate-mupid", (req, res) => {
   const mUPID = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-  console.log("mUPID", mUPID);
+  // console.log("mUPID", mUPID);
   res.json({ mUPID });
 });
 
@@ -68,5 +68,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  // console.log(`Server is running on port ${PORT}`);
 });

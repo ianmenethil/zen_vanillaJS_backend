@@ -7,12 +7,11 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-
   <body class="bg-gray-200">
     <div class="container mx-auto bg-white shadow-lg p-5 rounded-lg">
       <header class="text-center py-5">
         <img src="logo.png" alt="Company Logo" class="mx-auto" />
-        <h1 class="text-2xl font-bold">Red WheelBarrow BBQ Events</h1>
+        <h1 class="text-2xl font-bold">Red WheelBarrow BBQ Events | UAT Demo</h1>
       </header>
       <hr />
       <section class="product-showcase flex justify-center my-5">
@@ -50,7 +49,7 @@
         <input type="hidden" name="HideHeader" value="true" />
         <input type="hidden" name="HideMerchantLogo" value="" />
         <input type="hidden" name="PaymentAmount" id="inputPaymentAmount" value="" />
-        <input type="hidden" name="RedirectUrl" value="https://eventsairdemo.azurewebsites.net/response.html" />
+        <input type="hidden" name="RedirectUrl" value="https://eventsairdemo.ianmenethil.com/response.html" />
         <input type="hidden" name="ReturnUrl" value="" />
         <input type="hidden" name="MerchantUniquePaymentId" id="inputMUPID" value="" />
         <input type="hidden" name="SendConfirmationEmailToMerchant" value="False" />
@@ -66,7 +65,6 @@
         <input type="hidden" name="UserMode" value="0" />
         <input type="hidden" name="MinHeight" value="0" />
       </form>
-
       <form id="registration-form" class="mx-auto my-5">
         <div class="form-row">
           <label for="title" class="block text-gray-700">Title:</label>
@@ -84,9 +82,6 @@
           <input type="text" id="lastName" name="lastName" placeholder="Last Name" required class="block w-full p-2 my-2" />
         </div>
         <div class="form-row">
-          <!-- <label for="email" class="block text-gray-700">Email address:</label>
-          <input type="email" name="email" placeholder="Email Address" required class="block w-full p-2 my-2" /> -->
-
           <label for="emailInput" class="block text-gray-700">Email address:</label>
           <input type="email" id="emailInput" name="email" placeholder="Email Address" required="" autocomplete="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address." class="block w-full p-2 my-2" />
           <span class="text-red-600" hidden id="emailError">Please enter a valid email address.</span>
@@ -95,7 +90,6 @@
         </div>
         <button type="button" id="next-button" class="block w-full p-2 my-2 bg-blue-500 text-white">Next</button>
       </form>
-
       <section id="confirmation-section" class="hidden">
         <div class="text-center text-xl font-bold mb-4">Order Summary</div>
         <table class="mx-auto w-2/3 text-left">
@@ -178,7 +172,7 @@
             .then((data) => {
               const fingerprint = data.fingerprint;
               document.querySelector('[name="__Fingerprint"]').value = fingerprint;
-              console.log("Fingerprint:", fingerprint);
+              // console.log("Fingerprint:", fingerprint);
               paymentForm.submit();
             })
             .catch((error) => {
