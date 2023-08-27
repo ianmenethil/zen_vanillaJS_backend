@@ -11,7 +11,8 @@ const allowedOrigins = process.env.NODE_ENV === "production" ? ["https://eventsa
 // Creating an instance of the Express application
 const app = express();
 const PORT = process.env.PORT || 3000;
-// const axios = require("axios");
+const axios = require("axios");
+
 require("dotenv").config();
 console.log("Current NODE_ENV:", process.env.NODE_ENV);
 
@@ -129,6 +130,16 @@ app.post("/initiate-payment", async (req, res) => {
   }
 });
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
 // // Route for generating fingerprint
 // app.post("/generate-fingerprint", (req, res) => {
 //   // Fetching API key, username, and password from environment variables
@@ -157,13 +168,3 @@ app.post("/initiate-payment", async (req, res) => {
 //   // Sending the generated unique ID in the response
 //   res.json({ mUPID });
 // });
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something broke!");
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
