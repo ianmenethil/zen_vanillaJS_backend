@@ -45,9 +45,9 @@ app.use(
 app.use(express.static(__dirname));
 
 app.post("/generate-fingerprint", (req, res) => {
-  const apiKey = process.env.API_KEY || "defaultApiKey";
-  const un = process.env.UN || "defaultUn";
-  const pw = process.env.PW || "defaultPw";
+  const apiKey = process.env.API_KEY;
+  const un = process.env.UN;
+  const pw = process.env.PW;
   const { payMode, wholeNumberAmount, mUPID } = req.body;
   console.log("req.body", req.body);
   const strFingerprint = CryptoJS.SHA1(apiKey + "|" + un + "|" + pw + "|" + payMode + "|" + wholeNumberAmount + "|" + mUPID).toString();
