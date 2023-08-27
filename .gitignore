@@ -2,3 +2,4 @@ node_modules/
 %_code%_menethil%zen_vanillaJS_backend/
 *.old
 .env
+jsconfig.json

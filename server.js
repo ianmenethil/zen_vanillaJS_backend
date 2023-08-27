@@ -7,6 +7,7 @@ const allowedOrigins = process.env.NODE_ENV === "production" ? ["https://eventsa
 const app = express();
 const PORT = process.env.PORT || 3000;
 const axios = require("axios");
+
 require("dotenv").config();
 console.log("Current NODE_ENV:", process.env.NODE_ENV);
 // Logging middleware
@@ -45,8 +46,9 @@ app.use(
   })
 );
 app.use(express.static(__dirname));
+
 app.post("/initiate-payment", async (req, res) => {
-  console.log("Received request for /initiate-payment with data:", req.body);
+  console.log("Received payment initiation request:", req.body);
   const formData = req.body;
   const apiKey = process.env.API_KEY;
   const un = process.env.UN;
@@ -88,10 +90,11 @@ app.post("/initiate-payment", async (req, res) => {
     MinHeight: "0",
   };
   try {
-    console.log("Making a request to payment API:", "https://payuat.travelpay.com.au/Online/Payment?version=v3", paymentData);
-    const paymentResponse = await axios.post("https://payuat.travelpay.com.au/Online/Payment?version=v3", paymentData);
-    console.log("Response from payment API:", paymentResponse.data);
-    res.send(paymentResponse.data);
+    const baseUrl = "https://payuat.travelpay.com.au/Online/v3/Authorise?";
+    const queryString = new URLSearchParams(paymentData).toString();
+    const redirectUrl = `${baseUrl}${queryString}`;
+
+    res.json({ redirectUrl: redirectUrl });
   } catch (error) {
     console.error("Error initiating payment:", error);
     res.status(500).json({ error: "Error initiating payment." });
