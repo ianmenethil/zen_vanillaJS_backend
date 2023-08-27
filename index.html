@@ -1,204 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Red WheelBarrow BBQ Events</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body class="bg-gray-200">
-  <div class="container mx-auto bg-white shadow-lg p-5 rounded-lg">
-    <header class="text-center py-5">
-      <img src="logo.png" alt="Company Logo" class="mx-auto" />
-      <h1 class="text-2xl font-bold">Red WheelBarrow BBQ Events</h1>
-    </header>
-    <hr />
-    <section class="product-showcase flex justify-center my-5">
-      <div class="product-card mx-5">
-        <img src="product1.jpg" alt="Product 1" />
-        <h2 class="text-lg font-bold">reDBBQ Event: Friday Night Ticket</h2>
-        <div class="flex justify-between items-center">
-          <p class="text-gray-600">$100 AUD</p>
-          <input type="checkbox" id="product1" value="100" title="Select product 1" placeholder="Product 1" />
-        </div>
-      </div>
-      <div class="product-card mx-5">
-        <img src="product2.jpg" alt="Product 2" />
-        <h2 class="text-lg font-bold">reDBBQ Event: Saturday Night Ticket</h2>
-        <div class="flex justify-between items-center">
-          <p class="text-gray-600">$200 AUD</p>
-          <input type="checkbox" id="product2" value="200" title="Select product 2" placeholder="Product 2" />
-        </div>
-      </div>
-    </section>
-    <hr />
-    <form id="payment-form" action="https://payuat.travelpay.com.au/Online/Payment?version=v3" method="POST">
-      <input type="hidden" name="IsJsPlugin" value="True" />
-      <input type="hidden" name="Mode" value="0" />
-      <input type="hidden" name="Token" value="" />
-      <input type="hidden" name="AdditionalReference" value="" />
-      <input type="hidden" name="AustralianBusinessNumber" value="" />
-      <input type="hidden" name="CallbackUrl" value="" />
-      <input type="hidden" name="CompanyName" id="" value="" />
-      <input type="hidden" name="ContactNumber" id="inputContactNumber" value="" />
-      <input type="hidden" name="CustomerEmail" id="inputCustomerEmail" value="" />
-      <input type="hidden" name="CustomerId" value="" />
-      <input type="hidden" name="CustomerName" id="inputCustomerName" value="" />
-      <input type="hidden" name="CustomerReference" id="inputCompanyName" value="" />
-      <input type="hidden" name="HideHeader" value="true" />
-      <input type="hidden" name="HideMerchantLogo" value="" />
-      <input type="hidden" name="PaymentAmount" id="inputPaymentAmount" value="" />
-      <input type="hidden" name="RedirectUrl" value="https://eventsairdemo.ianmenethil.com/response.html" />
-      <input type="hidden" name="ReturnUrl" value="" />
-      <input type="hidden" name="MerchantUniquePaymentId" id="inputMUPID" value="" />
-      <input type="hidden" name="SendConfirmationEmailToMerchant" value="False" />
-      <input type="hidden" name="__ApiKey" id="apiKeyInput" value="" />
-      <input type="hidden" name="__Fingerprint" id="inputFingerprint" value="" />
-      <input type="hidden" name="HideTermsAndConditions" value="False" />
-      <input type="hidden" name="ShowFeeOnTokenising" value="False" />
-      <input type="hidden" name="ShowFailedPaymentFeeOnTokenising" value="False" />
-      <input type="hidden" name="AllowBankAcOneOffPayment" value="False" />
-      <input type="hidden" name="AllowPayIdOneOffPayment" value="False" />
-      <input type="hidden" name="AllowApplePayOneOffPayment" value="False" />
-      <input type="hidden" name="OverrideFeePayer" value="0" />
-      <input type="hidden" name="UserMode" value="0" />
-      <input type="hidden" name="MinHeight" value="0" />
-    </form>
-    <form id="registration-form" class="mx-auto my-5">
-      <div class="form-row">
-        <label for="title" class="block text-gray-700">Title:</label>
-        <select name="title" required class="block w-full p-2 my-2" title="Select your title">
-          <option value="Mr">Mr</option>
-          <option value="Mrs">Mrs</option>
-        </select>
-        <label for="mobile" class="block text-gray-700">Mobile Number:</label>
-        <input type="tel" name="mobile" placeholder="Mobile Number" required class="block w-full p-2 my-2" />
-      </div>
-      <div class="form-row">
-        <label for="firstName" class="block text-gray-700">First Name:</label>
-        <input type="text" name="firstName" placeholder="First Name" required class="block w-full p-2 my-2" />
-        <label for="lastName" class="block text-gray-700">Last Name:</label>
-        <input type="text" name="lastName" placeholder="Last Name" required class="block w-full p-2 my-2" />
-      </div>
-      <div class="form-row">
-        <label for="email" class="block text-gray-700">Email address:</label>
-        <input type="email" name="email" placeholder="Email Address" required class="block w-full p-2 my-2" />
-        <label for="companyName" class="block text-gray-700">Reference:</label>
-        <input type="text" name="companyName" placeholder="Reference" required class="block w-full p-2 my-2" />
-      </div>
-      <button type="button" id="next-button" class="block w-full p-2 my-2 bg-blue-500 text-white">Next</button>
-    </form>
-    <section id="confirmation-section" class="hidden">
-      <div class="text-center text-xl font-bold mb-4">Order Summary</div>
-      <table class="mx-auto w-2/3 text-left">
-        <tr>
-          <td class="py-2">Registration Total</td>
-          <td class="py-2 text-right" id="registrationTotal">AUD $0</td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <hr />
-          </td>
-        </tr>
-        <tr>
-          <td class="py-2">Total</td>
-          <td class="py-2 text-right" id="totalValue">AUD $0</td>
-        </tr>
-        <tr>
-          <td class="py-2">Paid to date</td>
-          <td class="py-2 text-right">AUD $0</td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <hr />
-          </td>
-        </tr>
-        <tr>
-          <td class="py-2">Amount Payable</td>
-          <td class="py-2 text-right" id="amountPayable">AUD $0</td>
-        </tr>
-      </table>
-      <div class="text-center mt-5">
-        <button type="button" id="back-button" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Back</button>
-        <button type="button" id="pay-now-button" class="bg-blue-500 text-white px-4 py-2 rounded">Pay Now</button>
-      </div>
-    </section>
-  </div>
-  <script src="main.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
-      crossorigin="anonymous"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const apiKeyInput = document.getElementById("apiKeyInput");
-      apiKeyInput.value = "7f08384e-dd56-4bfe-8c73-ad4586b43e63";
-      const nextButton = document.getElementById("next-button");
-      const payNowButton = document.querySelector("#confirmation-section #pay-now-button");
-      const paymentForm = document.getElementById("payment-form");
-      const firstNameField = document.querySelector('[name="firstName"]');
-      const lastNameField = document.querySelector('[name="lastName"]');
-      const companyNameField = document.querySelector('[name="companyName"]');
-      const mobileField = document.querySelector('[name="mobile"]');
-      const emailField = document.querySelector('[name="email"]');
-      const product1Checkbox = document.getElementById("product1");
-      const product2Checkbox = document.getElementById("product2");
-      let totalAmount = 0;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Red WheelBarrow BBQ Events</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-      async function fetchMUPID() {
-        const response = await fetch("http://localhost:3000/generate-mupid");
-        const data = await response.json();
-        return data.mUPID;
-      }
-      async function updatePaymentForm() {
-        paymentForm.querySelector('[name="PaymentAmount"]').value = totalAmount.toFixed(2);
-        paymentForm.querySelector('[name="CustomerName"]').value = firstNameField.value + " " + lastNameField.value;
-        paymentForm.querySelector('[name="CustomerReference"]').value = companyNameField.value;
-        paymentForm.querySelector('[name="ContactNumber"]').value = mobileField.value;
-        paymentForm.querySelector('[name="CustomerEmail"]').value = emailField.value;
-        const apiKey = apiKeyInput.value;
-        const payMode = "0";
-        const wholeNumberAmount = Math.round(totalAmount * 100);
-        const mUPID = await fetchMUPID();
-        paymentForm.querySelector('[name="MerchantUniquePaymentId"]').value = mUPID;
-        fetch("http://localhost:3000/generate-fingerprint", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", },
-          body: JSON.stringify({
-            payMode: payMode,
-            wholeNumberAmount: wholeNumberAmount,
-            mUPID: mUPID,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            const fingerprint = data.fingerprint;
-            document.querySelector('[name="__Fingerprint"]').value = fingerprint;
-            console.log("Fingerprint:", fingerprint);
-            paymentForm.submit();
+  <body class="bg-gray-200">
+    <div class="container mx-auto bg-white shadow-lg p-5 rounded-lg">
+      <header class="text-center py-5">
+        <img src="logo.png" alt="Company Logo" class="mx-auto" />
+        <h1 class="text-2xl font-bold">Red WheelBarrow BBQ Events</h1>
+      </header>
+      <hr />
+      <section class="product-showcase flex justify-center my-5">
+        <div class="product-card mx-5">
+          <img src="product1.jpg" alt="Product 1" />
+          <h2 class="text-lg font-bold">reDBBQ Event: Friday Night Ticket</h2>
+          <div class="flex justify-between items-center">
+            <p class="text-gray-600">$100 AUD</p>
+            <input type="checkbox" id="product1" value="100" title="Select product 1" placeholder="Product 1" />
+          </div>
+        </div>
+        <div class="product-card mx-5">
+          <img src="product2.jpg" alt="Product 2" />
+          <h2 class="text-lg font-bold">reDBBQ Event: Saturday Night Ticket</h2>
+          <div class="flex justify-between items-center">
+            <p class="text-gray-600">$200 AUD</p>
+            <input type="checkbox" id="product2" value="200" title="Select product 2" placeholder="Product 2" />
+          </div>
+        </div>
+      </section>
+      <hr />
+      <form id="payment-form" action="https://payuat.travelpay.com.au/Online/Payment?version=v3" method="POST">
+        <input type="hidden" name="IsJsPlugin" value="True" />
+        <input type="hidden" name="Mode" value="0" />
+        <input type="hidden" name="Token" value="" />
+        <input type="hidden" name="AdditionalReference" value="" />
+        <input type="hidden" name="AustralianBusinessNumber" value="" />
+        <input type="hidden" name="CallbackUrl" value="" />
+        <input type="hidden" name="CompanyName" id="" value="" />
+        <input type="hidden" name="ContactNumber" id="inputContactNumber" value="" />
+        <input type="hidden" name="CustomerEmail" id="inputCustomerEmail" value="" />
+        <input type="hidden" name="CustomerId" value="" />
+        <input type="hidden" name="CustomerName" id="inputCustomerName" value="" />
+        <input type="hidden" name="CustomerReference" id="inputCompanyName" value="" />
+        <input type="hidden" name="HideHeader" value="true" />
+        <input type="hidden" name="HideMerchantLogo" value="" />
+        <input type="hidden" name="PaymentAmount" id="inputPaymentAmount" value="" />
+        <input type="hidden" name="RedirectUrl" value="https://eventsairdemo.ianmenethil.com/response.html" />
+        <input type="hidden" name="ReturnUrl" value="" />
+        <input type="hidden" name="MerchantUniquePaymentId" id="inputMUPID" value="" />
+        <input type="hidden" name="SendConfirmationEmailToMerchant" value="False" />
+        <input type="hidden" name="__ApiKey" id="apiKeyInput" value="" />
+        <input type="hidden" name="__Fingerprint" id="inputFingerprint" value="" />
+        <input type="hidden" name="HideTermsAndConditions" value="False" />
+        <input type="hidden" name="ShowFeeOnTokenising" value="False" />
+        <input type="hidden" name="ShowFailedPaymentFeeOnTokenising" value="False" />
+        <input type="hidden" name="AllowBankAcOneOffPayment" value="False" />
+        <input type="hidden" name="AllowPayIdOneOffPayment" value="False" />
+        <input type="hidden" name="AllowApplePayOneOffPayment" value="False" />
+        <input type="hidden" name="OverrideFeePayer" value="0" />
+        <input type="hidden" name="UserMode" value="0" />
+        <input type="hidden" name="MinHeight" value="0" />
+      </form>
+      <form id="registration-form" class="mx-auto my-5">
+        <div class="form-row">
+          <label for="title" class="block text-gray-700">Title:</label>
+          <select name="title" required class="block w-full p-2 my-2" title="Select your title">
+            <option value="Mr">Mr</option>
+            <option value="Mrs">Mrs</option>
+          </select>
+          <label for="mobile" class="block text-gray-700">Mobile Number:</label>
+          <input type="tel" name="mobile" placeholder="Mobile Number" required class="block w-full p-2 my-2" />
+        </div>
+        <div class="form-row">
+          <label for="firstName" class="block text-gray-700">First Name:</label>
+          <input type="text" name="firstName" placeholder="First Name" required class="block w-full p-2 my-2" />
+          <label for="lastName" class="block text-gray-700">Last Name:</label>
+          <input type="text" name="lastName" placeholder="Last Name" required class="block w-full p-2 my-2" />
+        </div>
+        <div class="form-row">
+          <label for="email" class="block text-gray-700">Email address:</label>
+          <input type="email" name="email" placeholder="Email Address" required class="block w-full p-2 my-2" />
+          <label for="companyName" class="block text-gray-700">Reference:</label>
+          <input type="text" name="companyName" placeholder="Reference" required class="block w-full p-2 my-2" />
+        </div>
+        <button type="button" id="next-button" class="block w-full p-2 my-2 bg-blue-500 text-white">Next</button>
+      </form>
+      <section id="confirmation-section" class="hidden">
+        <div class="text-center text-xl font-bold mb-4">Order Summary</div>
+        <table class="mx-auto w-2/3 text-left">
+          <tr>
+            <td class="py-2">Registration Total</td>
+            <td class="py-2 text-right" id="registrationTotal">AUD $0</td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <hr />
+            </td>
+          </tr>
+          <tr>
+            <td class="py-2">Total</td>
+            <td class="py-2 text-right" id="totalValue">AUD $0</td>
+          </tr>
+          <tr>
+            <td class="py-2">Paid to date</td>
+            <td class="py-2 text-right">AUD $0</td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <hr />
+            </td>
+          </tr>
+          <tr>
+            <td class="py-2">Amount Payable</td>
+            <td class="py-2 text-right" id="amountPayable">AUD $0</td>
+          </tr>
+        </table>
+        <div class="text-center mt-5">
+          <button type="button" id="back-button" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Back</button>
+          <button type="button" id="pay-now-button" class="bg-blue-500 text-white px-4 py-2 rounded">Pay Now</button>
+        </div>
+      </section>
+    </div>
+    <script src="main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const apiKeyInput = document.getElementById("apiKeyInput");
+        apiKeyInput.value = "7f08384e-dd56-4bfe-8c73-ad4586b43e63";
+        const nextButton = document.getElementById("next-button");
+        const payNowButton = document.querySelector("#confirmation-section #pay-now-button");
+        const paymentForm = document.getElementById("payment-form");
+        const firstNameField = document.querySelector('[name="firstName"]');
+        const lastNameField = document.querySelector('[name="lastName"]');
+        const companyNameField = document.querySelector('[name="companyName"]');
+        const mobileField = document.querySelector('[name="mobile"]');
+        const emailField = document.querySelector('[name="email"]');
+        const product1Checkbox = document.getElementById("product1");
+        const product2Checkbox = document.getElementById("product2");
+        let totalAmount = 0;
+        async function fetchMUPID() {
+          const response = await fetch("http://localhost:3000/generate-mupid");
+          const data = await response.json();
+          return data.mUPID;
+        }
+        async function updatePaymentForm() {
+          paymentForm.querySelector('[name="PaymentAmount"]').value = totalAmount.toFixed(2);
+          paymentForm.querySelector('[name="CustomerName"]').value = firstNameField.value + " " + lastNameField.value;
+          paymentForm.querySelector('[name="CustomerReference"]').value = companyNameField.value;
+          paymentForm.querySelector('[name="ContactNumber"]').value = mobileField.value;
+          paymentForm.querySelector('[name="CustomerEmail"]').value = emailField.value;
+          const apiKey = apiKeyInput.value;
+          const payMode = "0";
+          const wholeNumberAmount = Math.round(totalAmount * 100);
+          const mUPID = await fetchMUPID();
+          paymentForm.querySelector('[name="MerchantUniquePaymentId"]').value = mUPID;
+          fetch("http://localhost:3000/generate-fingerprint", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              payMode: payMode,
+              wholeNumberAmount: wholeNumberAmount,
+              mUPID: mUPID,
+            }),
           })
-          .catch((error) => { console.error("Error generating fingerprint:", error); });
-      }
-      payNowButton.addEventListener("click", () => {
-        updatePaymentForm();
+            .then((response) => response.json())
+            .then((data) => {
+              const fingerprint = data.fingerprint;
+              document.querySelector('[name="__Fingerprint"]').value = fingerprint;
+              console.log("Fingerprint:", fingerprint);
+              paymentForm.submit();
+            })
+            .catch((error) => {
+              console.error("Error generating fingerprint:", error);
+            });
+        }
+        payNowButton.addEventListener("click", () => {
+          updatePaymentForm();
+        });
+        product1Checkbox.addEventListener("change", updateTotalAmount);
+        product2Checkbox.addEventListener("change", updateTotalAmount);
+        function updateTotalAmount() {
+          let paymentAmount = 0;
+          if (product1Checkbox.checked) paymentAmount += parseFloat(product1Checkbox.value);
+          if (product2Checkbox.checked) paymentAmount += parseFloat(product2Checkbox.value);
+          totalAmount = paymentAmount;
+          console.log("Updated Total Amount:", totalAmount);
+          const registrationTotalElem = document.getElementById("registrationTotal");
+          const totalElem = document.getElementById("totalValue");
+          const amountPayableElem = document.getElementById("amountPayable");
+          registrationTotalElem.textContent = `AUD $${totalAmount.toFixed(2)}`;
+          totalElem.textContent = `AUD $${totalAmount.toFixed(2)}`;
+          amountPayableElem.textContent = `AUD $${totalAmount.toFixed(2)}`;
+        }
       });
-
-      product1Checkbox.addEventListener("change", updateTotalAmount);
-      product2Checkbox.addEventListener("change", updateTotalAmount);
-      function updateTotalAmount() {
-        let paymentAmount = 0;
-        if (product1Checkbox.checked) paymentAmount += parseFloat(product1Checkbox.value);
-        if (product2Checkbox.checked) paymentAmount += parseFloat(product2Checkbox.value);
-        totalAmount = paymentAmount;
-        console.log("Updated Total Amount:", totalAmount);
-        const registrationTotalElem = document.getElementById("registrationTotal");
-        const totalElem = document.getElementById("totalValue");
-        const amountPayableElem = document.getElementById("amountPayable");
-        registrationTotalElem.textContent = `AUD $${totalAmount.toFixed(2)}`;
-        totalElem.textContent = `AUD $${totalAmount.toFixed(2)}`;
-        amountPayableElem.textContent = `AUD $${totalAmount.toFixed(2)}`;
-      }
-    });
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
