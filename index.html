@@ -66,30 +66,36 @@
         <input type="hidden" name="UserMode" value="0" />
         <input type="hidden" name="MinHeight" value="0" />
       </form>
+
       <form id="registration-form" class="mx-auto my-5">
         <div class="form-row">
           <label for="title" class="block text-gray-700">Title:</label>
-          <select name="title" required class="block w-full p-2 my-2" title="Select your title">
+          <select id="title" name="title" required class="block w-full p-2 my-2" title="Select your title">
             <option value="Mr">Mr</option>
             <option value="Mrs">Mrs</option>
           </select>
           <label for="mobile" class="block text-gray-700">Mobile Number:</label>
-          <input type="tel" name="mobile" placeholder="Mobile Number" required class="block w-full p-2 my-2" />
+          <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required="" value="0400123123" class="block w-full p-2 my-2" />
         </div>
         <div class="form-row">
           <label for="firstName" class="block text-gray-700">First Name:</label>
-          <input type="text" name="firstName" placeholder="First Name" required class="block w-full p-2 my-2" />
+          <input type="text" id="firstName" name="firstName" placeholder="First Name" required class="block w-full p-2 my-2" />
           <label for="lastName" class="block text-gray-700">Last Name:</label>
-          <input type="text" name="lastName" placeholder="Last Name" required class="block w-full p-2 my-2" />
+          <input type="text" id="lastName" name="lastName" placeholder="Last Name" required class="block w-full p-2 my-2" />
         </div>
         <div class="form-row">
-          <label for="email" class="block text-gray-700">Email address:</label>
-          <input type="email" name="email" placeholder="Email Address" required class="block w-full p-2 my-2" />
+          <!-- <label for="email" class="block text-gray-700">Email address:</label>
+          <input type="email" name="email" placeholder="Email Address" required class="block w-full p-2 my-2" /> -->
+
+          <label for="emailInput" class="block text-gray-700">Email address:</label>
+          <input type="email" id="emailInput" name="email" placeholder="Email Address" required="" autocomplete="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address." class="block w-full p-2 my-2" />
+          <span class="text-red-600" hidden id="emailError">Please enter a valid email address.</span>
           <label for="companyName" class="block text-gray-700">Reference:</label>
-          <input type="text" name="companyName" placeholder="Reference" required class="block w-full p-2 my-2" />
+          <input type="text" id="companyName" name="companyName" placeholder="Reference" required class="block w-full p-2 my-2" />
         </div>
         <button type="button" id="next-button" class="block w-full p-2 my-2 bg-blue-500 text-white">Next</button>
       </form>
+
       <section id="confirmation-section" class="hidden">
         <div class="text-center text-xl font-bold mb-4">Order Summary</div>
         <table class="mx-auto w-2/3 text-left">

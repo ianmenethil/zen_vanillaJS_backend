@@ -6,8 +6,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function handleNextButtonClick() {
-  document.getElementById("registration-form").style.display = "none";
-  document.getElementById("confirmation-section").style.display = "block";
+  const form = document.getElementById("registration-form");
+  const selectedProducts = document.querySelectorAll('.product-showcase input[type="checkbox"]:checked');
+  if (form.checkValidity() && selectedProducts.length > 0) {
+    form.style.display = "none";
+    document.getElementById("confirmation-section").style.display = "block";
+  } else {
+    if (selectedProducts.length === 0) {
+      alert("Please select at least one product from the list.");
+    } else {
+      form.reportValidity();
+    }
+  }
 }
 
 function handleBackButtonClick() {
