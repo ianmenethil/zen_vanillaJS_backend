@@ -3,3 +3,4 @@ node_modules/
 *.old
 .env
 jsconfig.json
+.vscode/settings.json
