@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +7,6 @@
 	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet" />
 	<link rel="stylesheet" href="styles.css" />
 </head>
-
 <body class="bg-gray-200">
 	<div class="container mx-auto bg-white shadow-lg p-5 rounded-lg">
 		<header class="text-center py-5">
@@ -17,6 +15,7 @@
 		</header>
 		<hr />
 		<section class="product-showcase flex justify-center my-5">
+			<!-- Product card #1 -->
 			<div class="product-card mx-5">
 				<img src="product1.jpg" alt="Product 1" />
 				<h2 class="text-lg font-bold">reDBBQ Event: Friday Night Ticket</h2>
@@ -24,120 +23,86 @@
 					<p class="text-gray-600">$100 AUD</p>
 					<input type="checkbox" id="product1" value="100" title="Select product 1" placeholder="Product 1"
 						class="product-checkbox" />
-					</div>
-					</div>
-					<div class="product-card mx-5">
-						<img src="product2.jpg" alt="Product 2" />
-						<h2 class="text-lg font-bold">reDBBQ Event: Saturday Night Ticket</h2>
-						<div class="flex justify-between items-center">
-							<p class="text-gray-600">$200 AUD</p>
+				</div>
+			</div>
+			<!-- Product card #2 -->
+			<div class="product-card mx-5">
+				<img src="product2.jpg" alt="Product 2" />
+				<h2 class="text-lg font-bold">reDBBQ Event: Saturday Night Ticket</h2>
+				<div class="flex justify-between items-center">
+					<p class="text-gray-600">$200 AUD</p>
 					<input type="checkbox" id="product2" value="200" title="Select product 2" placeholder="Product 2"
 						class="product-checkbox" />
-					</div>
-					</div>
-					</section>
-					<hr />
-					<form id="payment-form" action="https://payuat.travelpay.com.au/Online/Payment?version=v3" method="POST">
-						<input type="hidden" name="IsJsPlugin" value="True" />
-						<input type="hidden" name="Mode" value="0" />
-						<input type="hidden" name="Token" value="" />
-						<input type="hidden" name="AdditionalReference" value="" />
-						<input type="hidden" name="AustralianBusinessNumber" value="" />
-						<input type="hidden" name="CallbackUrl" value="" />
-						<input type="hidden" name="CompanyName" id="" value="" />
-						<input type="hidden" name="ContactNumber" id="inputContactNumber" value="" />
-						<input type="hidden" name="CustomerEmail" id="inputCustomerEmail" value="" />
-						<input type="hidden" name="CustomerId" value="" />
-						<input type="hidden" name="CustomerName" id="inputCustomerName" value="" />
-						<input type="hidden" name="CustomerReference" id="inputCompanyName" value="" />
-						<input type="hidden" name="HideHeader" value="true" />
-						<input type="hidden" name="HideMerchantLogo" value="" />
-						<input type="hidden" name="PaymentAmount" id="inputPaymentAmount" value="" />
-						<input type="hidden" name="RedirectUrl" value="https://eventsairdemodev.azurewebsites.net/response.html" />
-						<input type="hidden" name="ReturnUrl" value="" />
-						<input type="hidden" name="MerchantUniquePaymentId" id="inputMUPID" value="" />
-						<input type="hidden" name="SendConfirmationEmailToMerchant" value="False" />
-						<input type="hidden" name="__ApiKey" id="apiKeyInput" value="" />
-						<input type="hidden" name="__Fingerprint" id="inputFingerprint" value="" />
-						<input type="hidden" name="HideTermsAndConditions" value="False" />
-						<input type="hidden" name="ShowFeeOnTokenising" value="False" />
-						<input type="hidden" name="ShowFailedPaymentFeeOnTokenising" value="False" />
-						<input type="hidden" name="AllowBankAcOneOffPayment" value="False" />
-						<input type="hidden" name="AllowPayIdOneOffPayment" value="False" />
-						<input type="hidden" name="AllowApplePayOneOffPayment" value="False" />
-						<input type="hidden" name="OverrideFeePayer" value="0" />
-						<input type="hidden" name="UserMode" value="0" />
-						<input type="hidden" name="MinHeight" value="0" />
-					</form>
-					<form id="registration-form" class="mx-auto my-5">
-						<div class="form-row">
-							<label for="title" class="block text-gray-700">Title:</label>
-							<select id="title" name="title" required class="block w-full p-2 my-2" title="Select your title">
-								<option value="Mr">Mr</option>
-								<option value="Mrs">Mrs</option>
-							</select>
-							<label for="mobile" class="block text-gray-700">Mobile Number:</label>
-				<input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required="" value="0400123123"
-					class="block w-full p-2 my-2" />
 				</div>
-				<div class="form-row">
-					<label for="firstName" class="block text-gray-700">First Name:</label>
-				<input type="text" id="firstName" name="firstName" placeholder="First Name" value="Ian" required
-					class="block w-full p-2 my-2" />
+			</div>
+		</section>
+		<hr />
+		<!-- Registration form -->
+		<form id="registration-form" class="mx-auto my-5">
+			<div class="form-row">
+				<label for="title" class="block text-gray-700">Title:</label>
+				<select id="title" name="title" required class="block w-full p-2 my-2" title="Select your title">
+					<option value="Mr">Mr</option>
+					<option value="Mrs">Mrs</option>
+				</select>
+				<label for="mobile" class="block text-gray-700">Mobile Number:</label>
+				<input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required value="0400123123" class="block w-full p-2 my-2" />
+			</div>
+			<div class="form-row">
+				<label for="firstName" class="block text-gray-700">First Name:</label>
+				<input type="text" id="firstName" name="firstName" placeholder="First Name" value="Ian" required class="block w-full p-2 my-2" />
 				<label for="lastName" class="block text-gray-700">Last Name:</label>
-				<input type="text" id="lastName" name="lastName" placeholder="Last Name" value="Menethil" required
-					class="block w-full p-2 my-2" />
-				</div>
-				<div class="form-row">
-					<label for="emailInput" class="block text-gray-700">Email address:</label>
-				<input type="email" id="emailInput" name="email" placeholder="Email Address" value="ian@ianmenethil.com" required=""
-					autocomplete="email" title="Please enter a valid email address." class="block w-full p-2 my-2" />
+				<input type="text" id="lastName" name="lastName" placeholder="Last Name" value="Menethil" required class="block w-full p-2 my-2" />
+			</div>
+			<div class="form-row">
+				<label for="emailInput" class="block text-gray-700">Email address:</label>
+				<input type="email" id="emailInput" name="email" placeholder="Email Address" value="ian@ianmenethil.com" required autocomplete="email" title="Please enter a valid email address." class="block w-full p-2 my-2" />
 				<span class="text-red-600" hidden id="emailError">Please enter a valid email address.</span>
 				<label for="companyName" class="block text-gray-700">Reference:</label>
-				<input type="text" id="companyName" name="companyName" placeholder="Reference" value="backend_test" required
-					class="block w-full p-2 my-2" />
-				</div>
-				<button type="button" id="next-button" class="block w-full p-2 my-2 bg-blue-500 text-white">Next</button>
-				</form>
-				<section id="confirmation-section" class="hidden">
-					<div class="text-center text-xl font-bold mb-4">Order Summary</div>
-					<table class="mx-auto w-2/3 text-left">
-						<tr>
-							<td class="py-2">Registration Total</td>
-							<td class="py-2 text-right" id="registrationTotal">AUD $0</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<hr />
-							</td>
-						</tr>
-						<tr>
-							<td class="py-2">Total</td>
-							<td class="py-2 text-right" id="totalValue">AUD $0</td>
-						</tr>
-						<tr>
-							<td class="py-2">Paid to date</td>
-							<td class="py-2 text-right">AUD $0</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<hr />
-							</td>
-						</tr>
-						<tr>
-							<td class="py-2">Amount Payable</td>
-							<td class="py-2 text-right" id="amountPayable">AUD $0</td>
-						</tr>
-					</table>
-					<div class="text-center mt-5">
-				<button type="button" id="back-button" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Back</button>
-				<button type="button" id="pay-now-button" class="bg-blue-500 text-white px-4 py-2 rounded">Pay
-					Now</button>
-				</div>
-				</section>
-				</div>
-				<script src="main.js"></script>
+				<input type="text" id="companyName" name="companyName" placeholder="Reference" value="backend_test" required class="block w-full p-2 my-2" />
+			</div>
+			<button type="button" id="next-button" class="block w-full p-2 my-2 bg-blue-500 text-white">Next</button>
+		</form>
+		<!-- Confirmation section (hidden initially) -->
+		<section id="confirmation-section" class="hidden">
+			<!-- Order summary table and buttons to go back or pay now -->
+			<div class="text-center text-xl font-bold mb-4">Order Summary</div>
+			<table class="mx-auto w-2/3 text-left">
+				<tr>
+					<td class="py-2">Registration Total</td>
+					<td class="py-2 text-right" id="registrationTotal">AUD $0</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<hr />
+					</td>
+				</tr>
+				<tr>
+					<td class="py-2">Total</td>
+					<td class="py-2 text-right" id="totalValue">AUD $0</td>
+				</tr>
+				<tr>
+					<td class="py-2">Paid to date</td>
+					<td class="py-2 text-right">AUD $0</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<hr />
+					</td>
+				</tr>
+				<tr>
+					<td class="py-2">Amount Payable</td>
+					<td class="py-2 text-right" id="amountPayable">AUD $0</td>
+				</tr>
+			</table>
+			<div class="text-center mt-5">
+				<button type="button" id="back-button"
+					class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Back</button>
+				<button type="button" id="pay-now-button" class="bg-blue-500 text-white px-4 py-2 rounded">Pay Now</button>
+			</div>
+		</section>
+	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" crossorigin="anonymous"></script>
-	</body>
-
+	<script src="main.js"></script>
+</body>
 </html>
