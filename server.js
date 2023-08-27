@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const CryptoJS = require("crypto-js");
 const cors = require("cors");
+const allowedOrigins = process.env.NODE_ENV === "production" ? ["https://red-bush-05c759410.3.azurestaticapps.net"] : ["*"];
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,8 +14,9 @@ app.use((req, res, next) => {
 });
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({ origin: allowedOrigins }));
 app.use(helmet());
+
 
 app.post("/generate-fingerprint", (req, res) => {
   const apiKey = process.env.API_KEY || "defaultApiKey";

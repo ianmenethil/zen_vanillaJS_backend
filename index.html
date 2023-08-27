@@ -50,7 +50,7 @@
         <input type="hidden" name="HideHeader" value="true" />
         <input type="hidden" name="HideMerchantLogo" value="" />
         <input type="hidden" name="PaymentAmount" id="inputPaymentAmount" value="" />
-        <input type="hidden" name="RedirectUrl" value="https://eventsairdemo.ianmenethil.com/response.html" />
+        <input type="hidden" name="RedirectUrl" value="https://https://red-bush-05c759410.3.azurestaticapps.net/response.html" />
         <input type="hidden" name="ReturnUrl" value="" />
         <input type="hidden" name="MerchantUniquePaymentId" id="inputMUPID" value="" />
         <input type="hidden" name="SendConfirmationEmailToMerchant" value="False" />
@@ -144,7 +144,7 @@
         const product2Checkbox = document.getElementById("product2");
         let totalAmount = 0;
         async function fetchMUPID() {
-          const response = await fetch("http://localhost:3000/generate-mupid");
+          const response = await fetch("https://red-bush-05c759410.3.azurestaticapps.net:3000/generate-mupid");
           const data = await response.json();
           return data.mUPID;
         }
@@ -159,7 +159,7 @@
           const wholeNumberAmount = Math.round(totalAmount * 100);
           const mUPID = await fetchMUPID();
           paymentForm.querySelector('[name="MerchantUniquePaymentId"]').value = mUPID;
-          fetch("http://localhost:3000/generate-fingerprint", {
+          fetch("https://red-bush-05c759410.3.azurestaticapps.net:3000/generate-fingerprint", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
