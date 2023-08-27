@@ -16,6 +16,32 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(cors({ origin: allowedOrigins }));
 app.use(helmet());
+// Change to this after testing //
+// app.use(helmet.contentSecurityPolicy({
+//   directives: {
+//     defaultSrc: ["'self'"],
+//     scriptSrc: ["'self'", "'unsafe-inline'", "cdnjs.cloudflare.com"],
+//     styleSrc: ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net"],
+//     imgSrc: ["'self'", "data:"],
+//     connectSrc: ["'self'", "payuat.travelpay.com.au"],
+//     fontSrc: ["'self'", "cdn.jsdelivr.net"],
+//   }
+// }));
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'", "*"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "*"],
+      styleSrc: ["'self'", "'unsafe-inline'", "*"],
+      imgSrc: ["'self'", "data:", "*"],
+      connectSrc: ["'self'", "*"],
+      fontSrc: ["'self'", "*"],
+      formAction: ["'self'", "*"],
+      frameAncestors: ["'self'", "*"],
+    },
+  })
+);
+
 app.use(express.static(__dirname));
 
 app.post("/generate-fingerprint", (req, res) => {
