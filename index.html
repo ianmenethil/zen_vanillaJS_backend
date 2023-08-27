@@ -20,7 +20,7 @@
           <h2 class="text-lg font-bold">reDBBQ Event: Friday Night Ticket</h2>
           <div class="flex justify-between items-center">
             <p class="text-gray-600">$100 AUD</p>
-            <input type="checkbox" id="product1" value="100" title="Select product 1" placeholder="Product 1" />
+<input type="checkbox" id="product1" value="100" title="Select product 1" placeholder="Product 1" class="product-checkbox" />
           </div>
         </div>
         <div class="product-card mx-5">
@@ -28,7 +28,7 @@
           <h2 class="text-lg font-bold">reDBBQ Event: Saturday Night Ticket</h2>
           <div class="flex justify-between items-center">
             <p class="text-gray-600">$200 AUD</p>
-            <input type="checkbox" id="product2" value="200" title="Select product 2" placeholder="Product 2" />
+<input type="checkbox" id="product2" value="200" title="Select product 2" placeholder="Product 2" class="product-checkbox" />
           </div>
         </div>
       </section>
@@ -128,7 +128,39 @@
     </div>
     <script src="main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" crossorigin="anonymous"></script>
-    <script>
+
+<script>
+  
+  document.getElementById('pay-now-button').addEventListener('click', async () => {
+const formData = {
+    title: document.getElementById('title').value,
+    mobile: document.getElementById('mobile').value,
+    firstName: document.getElementById('firstName').value,
+    lastName: document.getElementById('lastName').value,
+    email: document.getElementById('emailInput').value,
+    companyName: document.getElementById('companyName').value,
+    // ... any other fields you want to capture
+};
+
+    try {
+        const response = await fetch('/initiate-payment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+        const data = await response.json();
+
+        // Use the returned URL/token to redirect the user
+        window.location.href = data.redirectUrl;
+    } catch (error) {
+        console.error('Error initiating payment:', error);
+    }
+});
+</script>
+
+    <!-- <script>
       document.addEventListener("DOMContentLoaded", () => {
         const apiKeyInput = document.getElementById("apiKeyInput");
         apiKeyInput.value = "7f08384e-dd56-4bfe-8c73-ad4586b43e63";
@@ -198,6 +230,7 @@
           amountPayableElem.textContent = `AUD $${totalAmount.toFixed(2)}`;
         }
       });
-    </script>
+    </script> -->
+
   </body>
 </html>
